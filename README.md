@@ -1,1 +1,2 @@
-	![database schema](database_schema.png)
+# Relational Rails
+![database schema](database_schema.png)
