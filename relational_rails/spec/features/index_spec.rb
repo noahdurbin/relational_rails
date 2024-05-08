@@ -3,10 +3,13 @@ require 'rails_helper'
 RSpec.describe 'areas index page' do
   describe 'areas can be displayed to users' do
     it 'can show each area available to a user' do
-      # For each parent table
-      # As a visitor
-      # When I visit '/parents'
-      # Then I see the name of each parent record in the system
+      area1 = Area.create(name: "Animal World", rock_type: "Granite", state: "Colorado", county: "Boulder", approach_distance: 30, roadside_access: false)
+      area2 = Area.create(name: "Wall Street", rock_type: "Sandstone", state: "Utah", county: "Grand", approach_distance: 0, roadside_access: true)
+
+      visit "/areas"
+
+      expect(page).to have_content(area1.name)
+      expect(page).to have_content(area2.name)
     end
   end
 end
