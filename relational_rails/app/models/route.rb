@@ -1,3 +1,3 @@
-class Route < ApplisationRecord
+class Route < ApplicationRecord
   belongs_to :area
 end
