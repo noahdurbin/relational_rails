@@ -1,6 +1,6 @@
 class AreasController < ApplicationController
   def index
-    @areas = Area.order(created_at: :desc)
+    @areas = Area.all.order(created_at: :desc)
   end
 
   def show
