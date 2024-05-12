@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/areas/:id" => "areas#show"
   get "/routes" => "routes#index"
   get "/routes/:id" => "routes#show"
+  get "/areas/:area_id/routes" => "area_routes#index"
   # Defines the root path route ("/")
   # root "posts#index"
 end

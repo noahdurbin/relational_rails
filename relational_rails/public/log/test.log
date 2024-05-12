@@ -1,0 +1,555 @@
+  [1m[35m (33.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (109.8ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "areas" CASCADE[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "routes" CASCADE[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "routes" ADD CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240506233146)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240506233123);[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2024-05-08 20:17:55.959797', '2024-05-08 20:17:55.959799') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '20d93cb434b2d3c6100c10dd14b7301c21888704', '2024-05-08 20:17:55.960696', '2024-05-08 20:17:55.960697') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (41.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (134.1ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "areas" CASCADE[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "routes" CASCADE[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "routes" ADD CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240506233146)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240506233123);[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2024-05-09 17:29:38.906538', '2024-05-09 17:29:38.906543') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '20d93cb434b2d3c6100c10dd14b7301c21888704', '2024-05-09 17:29:38.908566', '2024-05-09 17:29:38.908568') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.9ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:29:38.981266"], ["updated_at", "2024-05-09 17:29:38.981266"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.3ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:29:38.983442"], ["updated_at", "2024-05-09 17:29:38.983442"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-09 11:29:38 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/areas"):
+  
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (50.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (123.2ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "areas" CASCADE[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "routes" CASCADE[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[35m (13.9ms)[0m  [1m[35mALTER TABLE "routes" ADD CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240506233146)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240506233123);[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2024-05-09 17:37:37.385727', '2024-05-09 17:37:37.385732') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '20d93cb434b2d3c6100c10dd14b7301c21888704', '2024-05-09 17:37:37.387959', '2024-05-09 17:37:37.387960') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.7ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:37:37.459229"], ["updated_at", "2024-05-09 17:37:37.459229"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.2ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:37:37.461129"], ["updated_at", "2024-05-09 17:37:37.461129"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-09 11:37:37 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/areas"):
+  
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (1.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:48:21.190718"], ["updated_at", "2024-05-09 17:48:21.190718"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.3ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:48:21.192920"], ["updated_at", "2024-05-09 17:48:21.192920"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-09 11:48:21 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/areas"):
+  
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.5ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:48:48.641063"], ["updated_at", "2024-05-09 17:48:48.641063"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:48:48.642383"], ["updated_at", "2024-05-09 17:48:48.642383"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-09 11:48:48 -0600
+  
+ActionController::RoutingError (uninitialized constant AreasController):
+  
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.8ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:50:22.274819"], ["updated_at", "2024-05-09 17:50:22.274819"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.3ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:50:22.276420"], ["updated_at", "2024-05-09 17:50:22.276420"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-09 11:50:22 -0600
+  
+ActionController::RoutingError (uninitialized constant AreasController):
+  
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (1.2ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:52:45.854107"], ["updated_at", "2024-05-09 17:52:45.854107"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.3ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:52:45.856169"], ["updated_at", "2024-05-09 17:52:45.856169"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-09 11:52:45 -0600
+  
+ActionController::RoutingError (uninitialized constant AreasController):
+  
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.9ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:53:40.680838"], ["updated_at", "2024-05-09 17:53:40.680838"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:53:40.682515"], ["updated_at", "2024-05-09 17:53:40.682515"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-09 11:53:40 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (0.5ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  Rendered areas/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1899)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 1989)
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 0.5ms | Allocations: 9689)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.8ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:54:06.470827"], ["updated_at", "2024-05-09 17:54:06.470827"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.3ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:54:06.472337"], ["updated_at", "2024-05-09 17:54:06.472337"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-09 11:54:06 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (0.4ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  Rendered areas/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 630)
+  Rendered layout layouts/application.html.erb (Duration: 125.3ms | Allocations: 91254)
+Completed 200 OK in 135ms (Views: 127.1ms | ActiveRecord: 0.4ms | Allocations: 99002)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (2.9ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-10 22:50:41.357477"], ["updated_at", "2024-05-10 22:50:41.357477"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-10 22:50:41.361252"], ["updated_at", "2024-05-10 22:50:41.361252"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-10 16:50:41 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (0.6ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  Rendered areas/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 630)
+  Rendered layout layouts/application.html.erb (Duration: 20.4ms | Allocations: 31701)
+Completed 200 OK in 31ms (Views: 22.2ms | ActiveRecord: 0.6ms | Allocations: 39449)
+  [1m[36mTRANSACTION (21.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.5ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-10 22:50:41.439001"], ["updated_at", "2024-05-10 22:50:41.439001"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.3ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-10 22:50:41.440209"], ["updated_at", "2024-05-10 22:50:41.440209"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas/17" for 127.0.0.1 at 2024-05-10 16:50:41 -0600
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for AreasController):
+  
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:155:in `process'
+actionview (7.1.3.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.0.10) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.10) lib/rack/etag.rb:29:in `call'
+rack (3.0.10) lib/rack/conditional_get.rb:31:in `call'
+rack (3.0.10) lib/rack/head.rb:15:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.3.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.10) lib/rack/method_override.rb:28:in `call'
+rack (3.0.10) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.10) lib/rack/sendfile.rb:114:in `call'
+railties (7.1.3.2) lib/rails/engine.rb:536:in `call'
+rack (3.0.10) lib/rack/urlmap.rb:76:in `block in call'
+rack (3.0.10) lib/rack/urlmap.rb:60:in `each'
+rack (3.0.10) lib/rack/urlmap.rb:60:in `call'
+rack-test (2.1.0) lib/rack/test.rb:360:in `process_request'
+rack-test (2.1.0) lib/rack/test.rb:163:in `custom_request'
+rack-test (2.1.0) lib/rack/test.rb:112:in `get'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/3.2.0/forwardable.rb:240:in `get'
+capybara (3.40.0) lib/capybara/rack_test/browser.rb:81:in `process'
+capybara (3.40.0) lib/capybara/rack_test/browser.rb:56:in `process_and_follow_redirects'
+capybara (3.40.0) lib/capybara/rack_test/browser.rb:26:in `visit'
+capybara (3.40.0) lib/capybara/rack_test/driver.rb:46:in `visit'
+capybara (3.40.0) lib/capybara/session.rb:281:in `visit'
+capybara (3.40.0) lib/capybara/dsl.rb:52:in `call'
+capybara (3.40.0) lib/capybara/dsl.rb:52:in `visit'
+rspec-rails (6.1.2) lib/rspec/rails/example/feature_example_group.rb:29:in `visit'
+spec/features/areas/index_spec.rb:19:in `block (3 levels) in <top (required)>'
+rspec-core (3.13.0) lib/rspec/core/example.rb:263:in `instance_exec'
+rspec-core (3.13.0) lib/rspec/core/example.rb:263:in `block in run'
+rspec-core (3.13.0) lib/rspec/core/example.rb:511:in `block in with_around_and_singleton_context_hooks'
+rspec-core (3.13.0) lib/rspec/core/example.rb:468:in `block in with_around_example_hooks'
+rspec-core (3.13.0) lib/rspec/core/hooks.rb:486:in `block in run'
+rspec-core (3.13.0) lib/rspec/core/hooks.rb:626:in `block in run_around_example_hooks_for'
+rspec-core (3.13.0) lib/rspec/core/example.rb:352:in `call'
+rspec-rails (6.1.2) lib/rspec/rails/adapters.rb:75:in `block (2 levels) in <module:MinitestLifecycleAdapter>'
+rspec-core (3.13.0) lib/rspec/core/example.rb:457:in `instance_exec'
+rspec-core (3.13.0) lib/rspec/core/example.rb:457:in `instance_exec'
+rspec-core (3.13.0) lib/rspec/core/hooks.rb:390:in `execute_with'
+rspec-core (3.13.0) lib/rspec/core/hooks.rb:628:in `block (2 levels) in run_around_example_hooks_for'
+rspec-core (3.13.0) lib/rspec/core/example.rb:352:in `call'
+rspec-core (3.13.0) lib/rspec/core/hooks.rb:629:in `run_around_example_hooks_for'
+rspec-core (3.13.0) lib/rspec/core/hooks.rb:486:in `run'
+rspec-core (3.13.0) lib/rspec/core/example.rb:468:in `with_around_example_hooks'
+rspec-core (3.13.0) lib/rspec/core/example.rb:511:in `with_around_and_singleton_context_hooks'
+rspec-core (3.13.0) lib/rspec/core/example.rb:259:in `run'
+rspec-core (3.13.0) lib/rspec/core/example_group.rb:646:in `block in run_examples'
+rspec-core (3.13.0) lib/rspec/core/example_group.rb:642:in `map'
+rspec-core (3.13.0) lib/rspec/core/example_group.rb:642:in `run_examples'
+rspec-core (3.13.0) lib/rspec/core/example_group.rb:607:in `run'
+rspec-core (3.13.0) lib/rspec/core/example_group.rb:608:in `block in run'
+rspec-core (3.13.0) lib/rspec/core/example_group.rb:608:in `map'
+rspec-core (3.13.0) lib/rspec/core/example_group.rb:608:in `run'
+rspec-core (3.13.0) lib/rspec/core/runner.rb:121:in `block (3 levels) in run_specs'
+rspec-core (3.13.0) lib/rspec/core/runner.rb:121:in `map'
+rspec-core (3.13.0) lib/rspec/core/runner.rb:121:in `block (2 levels) in run_specs'
+rspec-core (3.13.0) lib/rspec/core/configuration.rb:2091:in `with_suite_hooks'
+rspec-core (3.13.0) lib/rspec/core/runner.rb:116:in `block in run_specs'
+rspec-core (3.13.0) lib/rspec/core/reporter.rb:74:in `report'
+rspec-core (3.13.0) lib/rspec/core/runner.rb:115:in `run_specs'
+rspec-core (3.13.0) lib/rspec/core/runner.rb:89:in `run'
+rspec-core (3.13.0) lib/rspec/core/runner.rb:71:in `run'
+rspec-core (3.13.0) lib/rspec/core/runner.rb:45:in `invoke'
+rspec-core (3.13.0) exe/rspec:4:in `<top (required)>'
+/Users/noahdurbin/.rbenv/versions/3.2.2/bin/rspec:25:in `load'
+/Users/noahdurbin/.rbenv/versions/3.2.2/bin/rspec:25:in `<top (required)>'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/cli/exec.rb:58:in `load'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/cli/exec.rb:58:in `kernel_load'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/cli/exec.rb:23:in `run'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/cli.rb:451:in `exec'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/vendor/thor/lib/thor/command.rb:28:in `run'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/vendor/thor/lib/thor/invocation.rb:127:in `invoke_command'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/vendor/thor/lib/thor.rb:527:in `dispatch'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/cli.rb:34:in `dispatch'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/vendor/thor/lib/thor/base.rb:584:in `start'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/cli.rb:28:in `start'
+bundler (2.5.9) exe/bundle:28:in `block in <top (required)>'
+/Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/bundler/friendly_errors.rb:117:in `with_friendly_errors'
+bundler (2.5.9) exe/bundle:20:in `<top (required)>'
+/Users/noahdurbin/.rbenv/versions/3.2.2/bin/bundle:25:in `load'
+/Users/noahdurbin/.rbenv/versions/3.2.2/bin/bundle:25:in `<main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (2.8ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:08:36.236076"], ["updated_at", "2024-05-11 00:08:36.236076"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-11 00:08:36.239742"], ["updated_at", "2024-05-11 00:08:36.239742"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas" for 127.0.0.1 at 2024-05-10 18:08:36 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (0.6ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  Rendered areas/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 630)
+  Rendered layout layouts/application.html.erb (Duration: 23.4ms | Allocations: 31874)
+Completed 200 OK in 34ms (Views: 25.0ms | ActiveRecord: 0.5ms | Allocations: 39622)
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (3.5ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:08:36.301382"], ["updated_at", "2024-05-11 00:08:36.301382"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-11 00:08:36.305501"], ["updated_at", "2024-05-11 00:08:36.305501"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas/21" for 127.0.0.1 at 2024-05-10 18:08:36 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 217)
+  Rendered layout layouts/application.html.erb (Duration: 0.5ms | Allocations: 849)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 2214)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (2.8ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:24:47.353307"], ["updated_at", "2024-05-11 00:24:47.353307"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-11 00:24:47.357078"], ["updated_at", "2024-05-11 00:24:47.357078"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas/23" for 127.0.0.1 at 2024-05-10 18:24:47 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mArea Load (0.5ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 324)
+  Rendered layout layouts/application.html.erb (Duration: 19.2ms | Allocations: 31540)
+Completed 200 OK in 33ms (Views: 21.4ms | ActiveRecord: 0.7ms | Allocations: 40569)
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (2.5ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:51:16.460345"], ["updated_at", "2024-05-11 00:51:16.460345"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.9ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:52:52.004859"], ["updated_at", "2024-05-11 00:52:52.004859"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (1.3ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:53:30.036388"], ["updated_at", "2024-05-11 00:53:30.036388"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRoute Create (5.5ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 27], ["created_at", "2024-05-11 00:53:30.049721"], ["updated_at", "2024-05-11 00:53:30.049721"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/Animation" for 127.0.0.1 at 2024-05-10 18:53:30 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/Animation"):
+  
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (31.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (148.2ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "areas" CASCADE[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "routes" CASCADE[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "routes" ADD CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240506233146)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240506233123);[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2024-05-11 01:13:24.746355', '2024-05-11 01:13:24.746358') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '20d93cb434b2d3c6100c10dd14b7301c21888704', '2024-05-11 01:13:24.748221', '2024-05-11 01:13:24.748222') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.8ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 01:13:24.812116"], ["updated_at", "2024-05-11 01:13:24.812116"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRoute Create (1.4ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 1], ["created_at", "2024-05-11 01:13:24.827058"], ["updated_at", "2024-05-11 01:13:24.827058"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/routes" for 127.0.0.1 at 2024-05-10 19:13:24 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.4ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  Rendered routes/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 789)
+  Rendered layout layouts/application.html.erb (Duration: 21.9ms | Allocations: 31982)
+Completed 200 OK in 33ms (Views: 24.0ms | ActiveRecord: 0.4ms | Allocations: 39730)
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (1.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 01:28:01.354329"], ["updated_at", "2024-05-11 01:28:01.354329"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRoute Create (2.4ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 2], ["created_at", "2024-05-11 01:28:01.367183"], ["updated_at", "2024-05-11 01:28:01.367183"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/routes/2" for 127.0.0.1 at 2024-05-10 19:28:01 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes/2"):
+  
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (7.8ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 01:29:41.990875"], ["updated_at", "2024-05-11 01:29:41.990875"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRoute Create (2.0ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 3], ["created_at", "2024-05-11 01:29:42.011568"], ["updated_at", "2024-05-11 01:29:42.011568"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/routes/3" for 127.0.0.1 at 2024-05-10 19:29:42 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRoute Load (0.5ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 344)
+  Rendered layout layouts/application.html.erb (Duration: 17.9ms | Allocations: 31577)
+Completed 200 OK in 29ms (Views: 19.9ms | ActiveRecord: 0.6ms | Allocations: 40604)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (3.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-12 15:26:01.154758"], ["updated_at", "2024-05-12 15:26:01.154758"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.4ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-12 15:26:01.159071"], ["updated_at", "2024-05-12 15:26:01.159071"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Load (0.4ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRoute Create (2.1ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 4], ["created_at", "2024-05-12 15:26:01.179027"], ["updated_at", "2024-05-12 15:26:01.179027"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Load (0.1ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRoute Create (0.3ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Free Willie"], ["difficulty", 511], ["sport", true], ["trad", false], ["length", 80], ["pitches", 1], ["rating", 3], ["area_id", 4], ["created_at", "2024-05-12 15:26:01.182211"], ["updated_at", "2024-05-12 15:26:01.182211"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas/4/routes" for 127.0.0.1 at 2024-05-12 09:26:01 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/areas/4/routes"):
+  
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.7ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-12 15:26:20.279695"], ["updated_at", "2024-05-12 15:26:20.279695"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Create (0.3ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-12 15:26:20.281124"], ["updated_at", "2024-05-12 15:26:20.281124"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Load (0.4ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mRoute Create (0.7ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 6], ["created_at", "2024-05-12 15:26:20.298620"], ["updated_at", "2024-05-12 15:26:20.298620"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mArea Load (0.1ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mRoute Create (0.3ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Free Willie"], ["difficulty", 511], ["sport", true], ["trad", false], ["length", 80], ["pitches", 1], ["rating", 3], ["area_id", 6], ["created_at", "2024-05-12 15:26:20.300361"], ["updated_at", "2024-05-12 15:26:20.300361"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/areas/6/routes" for 127.0.0.1 at 2024-05-12 09:26:20 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/areas/6/routes"):
+  
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m

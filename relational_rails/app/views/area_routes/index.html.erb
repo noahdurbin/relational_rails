@@ -1,0 +1,11 @@
+<% @routes.each do |route| %>
+  <%= link_to route.name, "/routes/#{route.id}" %>
+  <ul>
+    <li>Difficulty: <%= route.difficulty %></li>
+    <li>Length: <%= route.length %></li>
+    <li>Pitches: <%= route.pitches %></li>
+    <li>Rating: <%= route.rating %> stars</li>
+    <li>Sport: <%= route.sport %> </li>
+    <li>Trad: <%= route.trad %> </li>
+  </ul>
+<% end %>
