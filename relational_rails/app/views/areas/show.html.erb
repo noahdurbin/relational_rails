@@ -7,3 +7,4 @@
   <li>Roadside Access: <%= @area.roadside_access %> </li>
   <li>Number of Routes: <%= @area.routes_count %> </li>
 </ul>
+<%= link_to "Routes in this Area", area_routes_path(area_id: @area.id) %>
