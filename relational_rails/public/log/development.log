@@ -1,0 +1,1570 @@
+  [1m[35m (142.7ms)[0m  [1m[35mCREATE DATABASE "relational_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (50.3ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (18.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-05-06 23:32:06.132866', '2024-05-06 23:32:06.132868') RETURNING "key"[0m
+Migrating to CreateAreas (20240506233123)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20240506233146)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233146') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (6.2ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-08 20:01:29.212649"], ["updated_at", "2024-05-08 20:01:29.212649"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (49.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_development"[0m
+  [1m[35m (30.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (140.1ms)[0m  [1m[35mCREATE DATABASE "relational_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (55.0ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-05-08 20:04:37.065263', '2024-05-08 20:04:37.065267') RETURNING "key"[0m
+Migrating to CreateAreas (20240506233123)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20240506233146)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233146') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (82.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_development"[0m
+  [1m[35m (36.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (99.8ms)[0m  [1m[35mCREATE DATABASE "relational_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (43.1ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-05-08 20:21:21.824615', '2024-05-08 20:21:21.824617') RETURNING "key"[0m
+Migrating to CreateAreas (20240506233123)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20240506233146)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233146') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (5.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (75.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_development"[0m
+  [1m[35m (43.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (500.2ms)[0m  [1m[35mCREATE DATABASE "relational_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (131.6ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE DATABASE "relational_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (23.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-05-09 17:35:06.592863', '2024-05-09 17:35:06.592865') RETURNING "key"[0m
+Migrating to CreateAreas (20240506233123)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20240506233146)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.3ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233146') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (2.0ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:35:18.299994"], ["updated_at", "2024-05-09 17:35:18.299994"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (0.6ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:35:18.308642"], ["updated_at", "2024-05-09 17:35:18.308642"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRoute Load (1.4ms)[0m  [1m[34mSELECT "routes".* FROM "routes" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (46.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_development"[0m
+  [1m[35m (25.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (172.1ms)[0m  [1m[35mCREATE DATABASE "relational_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (60.5ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (16.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (11.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-05-09 17:36:37.418987', '2024-05-09 17:36:37.418989') RETURNING "key"[0m
+Migrating to CreateAreas (20240506233123)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20240506233146)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.0ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233146') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (1.6ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-09 17:36:45.277662"], ["updated_at", "2024-05-09 17:36:45.277662"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (0.6ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-09 17:36:45.286480"], ["updated_at", "2024-05-09 17:36:45.286480"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRoute Load (1.4ms)[0m  [1m[34mSELECT "routes".* FROM "routes" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mRoute Load (0.3ms)[0m  [1m[34mSELECT "routes".* FROM "routes" ORDER BY "routes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mArea Load (0.7ms)[0m  [1m[34mSELECT "areas".* FROM "areas" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/areas" for ::1 at 2024-05-09 11:55:25 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (1.5ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  ↳ app/views/areas/index.html.erb:2
+  Rendered areas/index.html.erb within layouts/application (Duration: 29.0ms | Allocations: 16729)
+  Rendered layout layouts/application.html.erb (Duration: 187.1ms | Allocations: 107949)
+Completed 200 OK in 210ms (Views: 176.7ms | ActiveRecord: 14.8ms | Allocations: 121375)
+
+
+Started GET "/" for ::1 at 2024-05-09 15:38:14 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.0ms | Allocations: 373)
+Completed 200 OK in 14ms (Views: 4.7ms | ActiveRecord: 0.0ms | Allocations: 4282)
+
+
+Started GET "/areas" for ::1 at 2024-05-09 15:38:20 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (13.7ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  ↳ app/views/areas/index.html.erb:2
+  Rendered areas/index.html.erb within layouts/application (Duration: 103.0ms | Allocations: 16626)
+  Rendered layout layouts/application.html.erb (Duration: 144.8ms | Allocations: 52022)
+Completed 200 OK in 189ms (Views: 99.0ms | ActiveRecord: 47.5ms | Allocations: 59889)
+
+
+Started GET "/" for ::1 at 2024-05-10 16:41:20 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (5.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.6ms | Allocations: 373)
+Completed 200 OK in 11ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 4278)
+
+
+Started GET "/areas" for ::1 at 2024-05-10 16:41:24 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (1.4ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  ↳ app/views/areas/index.html.erb:2
+  Rendered areas/index.html.erb within layouts/application (Duration: 52.8ms | Allocations: 16626)
+  Rendered layout layouts/application.html.erb (Duration: 96.9ms | Allocations: 50677)
+Completed 200 OK in 115ms (Views: 63.6ms | ActiveRecord: 34.7ms | Allocations: 58543)
+
+
+Started GET "/areas/1" for ::1 at 2024-05-10 18:06:10 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (1.1ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.5ms | Allocations: 339)
+  Rendered layout layouts/application.html.erb (Duration: 39.7ms | Allocations: 34246)
+Completed 200 OK in 100ms (Views: 42.4ms | ActiveRecord: 20.4ms | Allocations: 63871)
+
+
+Started GET "/areas/1" for ::1 at 2024-05-10 18:07:11 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (2.1ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.5ms | Allocations: 222)
+  Rendered layout layouts/application.html.erb (Duration: 13.5ms | Allocations: 14923)
+Completed 200 OK in 56ms (Views: 14.8ms | ActiveRecord: 35.8ms | Allocations: 21519)
+
+
+Started GET "/areas/1" for ::1 at 2024-05-10 18:07:12 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 18)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 1427)
+Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 0.2ms | Allocations: 2123)
+
+
+Started GET "/areas/1" for ::1 at 2024-05-10 18:08:02 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (1.9ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 216)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 15057)
+Completed 200 OK in 47ms (Views: 12.5ms | ActiveRecord: 30.2ms | Allocations: 21639)
+
+
+Started GET "/animation" for ::1 at 2024-05-10 18:45:52 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (2.8ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:47:21.994390"], ["updated_at", "2024-05-11 00:47:21.994390"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (0.6ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-11 00:47:21.999216"], ["updated_at", "2024-05-11 00:47:21.999216"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (1.1ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:49:01.491541"], ["updated_at", "2024-05-11 00:49:01.491541"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (0.6ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-11 00:49:01.494185"], ["updated_at", "2024-05-11 00:49:01.494185"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Load (0.4ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRoute Create (5.8ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 5], ["created_at", "2024-05-11 00:49:01.522736"], ["updated_at", "2024-05-11 00:49:01.522736"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRoute Create (0.4ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Free Willie"], ["difficulty", 511], ["sport", true], ["trad", false], ["length", 80], ["pitches", 1], ["rating", 3], ["area_id", 5], ["created_at", "2024-05-11 00:49:01.530565"], ["updated_at", "2024-05-11 00:49:01.530565"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/animation" for ::1 at 2024-05-10 18:51:49 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+Started GET "/animation" for ::1 at 2024-05-10 18:51:49 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+Started GET "/animation" for ::1 at 2024-05-10 18:51:50 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (2.1ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 00:52:10.736325"], ["updated_at", "2024-05-11 00:52:10.736325"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (0.7ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-11 00:52:10.740669"], ["updated_at", "2024-05-11 00:52:10.740669"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Load (0.4ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRoute Create (1.8ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 7], ["created_at", "2024-05-11 00:52:10.766078"], ["updated_at", "2024-05-11 00:52:10.766078"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRoute Create (0.3ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Free Willie"], ["difficulty", 511], ["sport", true], ["trad", false], ["length", 80], ["pitches", 1], ["rating", 3], ["area_id", 7], ["created_at", "2024-05-11 00:52:10.769856"], ["updated_at", "2024-05-11 00:52:10.769856"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/animation" for ::1 at 2024-05-10 18:53:59 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+Started GET "/animation" for ::1 at 2024-05-10 18:54:00 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+Started GET "/animation" for ::1 at 2024-05-10 18:54:13 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+Started GET "/1" for ::1 at 2024-05-10 18:54:18 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/1"):
+  
+Started GET "/animation" for ::1 at 2024-05-10 18:54:31 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+Started GET "/animation" for ::1 at 2024-05-10 18:54:40 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/animation"):
+  
+Started GET "/routes" for ::1 at 2024-05-10 19:00:13 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+Started GET "/routes" for ::1 at 2024-05-10 19:00:55 -0600
+  
+SyntaxError (/Users/noahdurbin/Documents/turing/mod_two/relational_rails/relational_rails/config/routes.rb:13: syntax error, unexpected `end'):
+  
+config/routes.rb:13: syntax error, unexpected `end'
+Started GET "/routes" for ::1 at 2024-05-10 19:00:56 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+Started GET "/routes" for ::1 at 2024-05-10 19:00:58 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+Started GET "/routes" for ::1 at 2024-05-10 19:00:59 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+Started GET "/routes" for ::1 at 2024-05-10 19:00:59 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+Started GET "/routes" for ::1 at 2024-05-10 19:01:12 -0600
+Processing by RoutesController#index as HTML
+Completed 406 Not Acceptable in 20ms (ActiveRecord: 0.0ms | Allocations: 8550)
+
+
+  
+ActionController::MissingExactTemplate (RoutesController#index is missing a template for request formats: text/html):
+  
+actionpack (7.1.3.2) lib/action_controller/metal/implicit_render.rb:47:in `default_render'
+actionpack (7.1.3.2) lib/action_controller/metal/basic_implicit_render.rb:7:in `send_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:224:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rendering.rb:165:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.5) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.5) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.1.3.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.3.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.3.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.3.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.3.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.0.10) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.10) lib/rack/etag.rb:29:in `call'
+rack (3.0.10) lib/rack/conditional_get.rb:31:in `call'
+rack (3.0.10) lib/rack/head.rb:15:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.3.2) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.3.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.10) lib/rack/method_override.rb:28:in `call'
+rack (3.0.10) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.10) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.3.2) lib/rails/engine.rb:536:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/routes" for ::1 at 2024-05-10 19:01:38 -0600
+Processing by RoutesController#index as HTML
+Completed 406 Not Acceptable in 2ms (ActiveRecord: 0.0ms | Allocations: 1705)
+
+
+  
+ActionController::MissingExactTemplate (RoutesController#index is missing a template for request formats: text/html):
+  
+actionpack (7.1.3.2) lib/action_controller/metal/implicit_render.rb:47:in `default_render'
+actionpack (7.1.3.2) lib/action_controller/metal/basic_implicit_render.rb:7:in `send_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:224:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rendering.rb:165:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.5) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.5) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.1.3.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.3.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.3.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.3.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.3.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.0.10) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.10) lib/rack/etag.rb:29:in `call'
+rack (3.0.10) lib/rack/conditional_get.rb:31:in `call'
+rack (3.0.10) lib/rack/head.rb:15:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.3.2) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.3.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.10) lib/rack/method_override.rb:28:in `call'
+rack (3.0.10) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.10) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.3.2) lib/rails/engine.rb:536:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/routes" for ::1 at 2024-05-10 19:01:39 -0600
+Processing by RoutesController#index as HTML
+Completed 406 Not Acceptable in 1ms (ActiveRecord: 0.0ms | Allocations: 566)
+
+
+  
+ActionController::MissingExactTemplate (RoutesController#index is missing a template for request formats: text/html):
+  
+actionpack (7.1.3.2) lib/action_controller/metal/implicit_render.rb:47:in `default_render'
+actionpack (7.1.3.2) lib/action_controller/metal/basic_implicit_render.rb:7:in `send_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:224:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rendering.rb:165:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.5) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.5) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.1.3.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.3.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.3.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.3.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.3.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.0.10) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.10) lib/rack/etag.rb:29:in `call'
+rack (3.0.10) lib/rack/conditional_get.rb:31:in `call'
+rack (3.0.10) lib/rack/head.rb:15:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.3.2) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.3.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.10) lib/rack/method_override.rb:28:in `call'
+rack (3.0.10) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.10) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.3.2) lib/rails/engine.rb:536:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/routes" for ::1 at 2024-05-10 19:02:13 -0600
+Processing by RoutesController#index as HTML
+Completed 406 Not Acceptable in 2ms (ActiveRecord: 0.0ms | Allocations: 565)
+
+
+  
+ActionController::MissingExactTemplate (RoutesController#index is missing a template for request formats: text/html):
+  
+actionpack (7.1.3.2) lib/action_controller/metal/implicit_render.rb:47:in `default_render'
+actionpack (7.1.3.2) lib/action_controller/metal/basic_implicit_render.rb:7:in `send_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:224:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rendering.rb:165:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.5) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.5) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.1.3.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.3.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.3.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.3.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.3.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.0.10) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.10) lib/rack/etag.rb:29:in `call'
+rack (3.0.10) lib/rack/conditional_get.rb:31:in `call'
+rack (3.0.10) lib/rack/head.rb:15:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.3.2) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.3.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.10) lib/rack/method_override.rb:28:in `call'
+rack (3.0.10) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.10) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.3.2) lib/rails/engine.rb:536:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/routes" for ::1 at 2024-05-10 19:02:14 -0600
+Processing by RoutesController#index as HTML
+Completed 406 Not Acceptable in 1ms (ActiveRecord: 0.0ms | Allocations: 565)
+
+
+  
+ActionController::MissingExactTemplate (RoutesController#index is missing a template for request formats: text/html):
+  
+actionpack (7.1.3.2) lib/action_controller/metal/implicit_render.rb:47:in `default_render'
+actionpack (7.1.3.2) lib/action_controller/metal/basic_implicit_render.rb:7:in `send_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:224:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rendering.rb:165:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.5) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.5) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.1.3.2) lib/action_text/rendering.rb:23:in `with_renderer'
+actiontext (7.1.3.2) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.1.3.2) lib/abstract_controller/callbacks.rb:258:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/rescue.rb:25:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.1.3.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.1.3.2) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.1.3.2) lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+actionpack (7.1.3.2) lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+activerecord (7.1.3.2) lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+actionpack (7.1.3.2) lib/abstract_controller/base.rb:160:in `process'
+actionview (7.1.3.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:227:in `dispatch'
+actionpack (7.1.3.2) lib/action_controller/metal.rb:309:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:51:in `block in serve'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.3.2) lib/action_dispatch/routing/route_set.rb:882:in `call'
+rack (3.0.10) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.0.10) lib/rack/etag.rb:29:in `call'
+rack (3.0.10) lib/rack/conditional_get.rb:31:in `call'
+rack (3.0.10) lib/rack/head.rb:15:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/permissions_policy.rb:36:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/http/content_security_policy.rb:33:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (7.1.3.2) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `block in tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.3.2) lib/active_support/tagged_logging.rb:135:in `tagged'
+activesupport (7.1.3.2) lib/active_support/broadcast_logger.rb:240:in `method_missing'
+railties (7.1.3.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.0.10) lib/rack/method_override.rb:28:in `call'
+rack (3.0.10) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.0.10) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+railties (7.1.3.2) lib/rails/engine.rb:536:in `call'
+puma (6.4.2) lib/puma/configuration.rb:272:in `call'
+puma (6.4.2) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.2) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.2) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.2) lib/puma/server.rb:464:in `process_client'
+puma (6.4.2) lib/puma/server.rb:245:in `block in run'
+puma (6.4.2) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/routes" for ::1 at 2024-05-10 19:02:47 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  Rendered routes/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1228)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | Allocations: 1342)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 3286)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Routes</h1>
+<%= @routes.each do |route| %>
+  <ul>
+    <li>Difficulty: <%= route.difficulty %></li>
+    <li>Length: <%= route.length %></li>
+    <li>Pitches: <%= route.pitches %></li>
+    <li>Rating: <%= route.rating %> stars</li>
+    <li>Sport: <%= route.sport %> </li>
+    <li>Trad: <%= route.trad %> </li>
+  </ul>
+<%= end %>
+
+):
+1:    <h1>Routes</h1>
+2:    <%= @routes.each do |route| %>
+3:      <ul>
+4:        <li>Difficulty: <%= route.difficulty %></li>
+5:        <li>Length: <%= route.length %></li>
+6:        <li>Pitches: <%= route.pitches %></li>
+7:        <li>Rating: <%= route.rating %> stars</li>
+8:        <li>Sport: <%= route.sport %> </li>
+9:        <li>Trad: <%= route.trad %> </li>
+10:      </ul>
+11:    <%= end %>
+  
+app/views/routes/index.html.erb:11: syntax error, unexpected `end'
+app/views/routes/index.html.erb:14: syntax error, unexpected end-of-input
+Started GET "/routes" for ::1 at 2024-05-10 19:04:14 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  Rendered routes/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1206)
+  Rendered layout layouts/application.html.erb (Duration: 0.7ms | Allocations: 1309)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 3147)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Routes</h1>
+<ul>
+<%= @routes.each do |route| %>
+  <li>Difficulty: <%= route.difficulty %></li>
+  <li>Length: <%= route.length %></li>
+  <li>Pitches: <%= route.pitches %></li>
+  <li>Rating: <%= route.rating %> stars</li>
+  <li>Sport: <%= route.sport %> </li>
+  <li>Trad: <%= route.trad %> </li>
+<%= end %>
+</ul>
+
+):
+1:    <h1>Routes</h1>
+2:    <ul>
+3:    <%= @routes.each do |route| %>
+4:      <li>Difficulty: <%= route.difficulty %></li>
+5:      <li>Length: <%= route.length %></li>
+6:      <li>Pitches: <%= route.pitches %></li>
+7:      <li>Rating: <%= route.rating %> stars</li>
+8:      <li>Sport: <%= route.sport %> </li>
+9:      <li>Trad: <%= route.trad %> </li>
+10:    <%= end %>
+11:    </ul>
+  
+app/views/routes/index.html.erb:10: syntax error, unexpected `end'
+app/views/routes/index.html.erb:14: syntax error, unexpected end-of-input
+Started GET "/routes" for ::1 at 2024-05-10 19:04:15 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  Rendered routes/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1249)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | Allocations: 1351)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1628)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Routes</h1>
+<ul>
+<%= @routes.each do |route| %>
+  <li>Difficulty: <%= route.difficulty %></li>
+  <li>Length: <%= route.length %></li>
+  <li>Pitches: <%= route.pitches %></li>
+  <li>Rating: <%= route.rating %> stars</li>
+  <li>Sport: <%= route.sport %> </li>
+  <li>Trad: <%= route.trad %> </li>
+<%= end %>
+</ul>
+
+):
+1:    <h1>Routes</h1>
+2:    <ul>
+3:    <%= @routes.each do |route| %>
+4:      <li>Difficulty: <%= route.difficulty %></li>
+5:      <li>Length: <%= route.length %></li>
+6:      <li>Pitches: <%= route.pitches %></li>
+7:      <li>Rating: <%= route.rating %> stars</li>
+8:      <li>Sport: <%= route.sport %> </li>
+9:      <li>Trad: <%= route.trad %> </li>
+10:    <%= end %>
+11:    </ul>
+  
+app/views/routes/index.html.erb:10: syntax error, unexpected `end'
+app/views/routes/index.html.erb:14: syntax error, unexpected end-of-input
+Started GET "/routes" for ::1 at 2024-05-10 19:05:53 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (2.6ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:3
+  Rendered routes/index.html.erb within layouts/application (Duration: 67.5ms | Allocations: 19741)
+  Rendered layout layouts/application.html.erb (Duration: 100.0ms | Allocations: 52609)
+Completed 200 OK in 104ms (Views: 70.9ms | ActiveRecord: 30.2ms | Allocations: 54472)
+
+
+Started GET "/routes" for ::1 at 2024-05-10 19:06:22 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (17.1ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:3
+  Rendered routes/index.html.erb within layouts/application (Duration: 48.9ms | Allocations: 5201)
+  Rendered layout layouts/application.html.erb (Duration: 66.9ms | Allocations: 19942)
+Completed 200 OK in 70ms (Views: 23.2ms | ActiveRecord: 44.7ms | Allocations: 21765)
+
+
+Started GET "/routes" for ::1 at 2024-05-10 19:07:26 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (17.2ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 37.1ms | Allocations: 5274)
+  Rendered layout layouts/application.html.erb (Duration: 47.2ms | Allocations: 20068)
+Completed 200 OK in 51ms (Views: 15.3ms | ActiveRecord: 33.0ms | Allocations: 21891)
+
+
+Started GET "/routes" for ::1 at 2024-05-10 19:07:33 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.6ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 525)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | Allocations: 1944)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.6ms | Allocations: 2204)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (8590.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (42.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_development"[0m
+  [1m[35m (62.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "relational_rails_test"[0m
+  [1m[35m (119.7ms)[0m  [1m[35mCREATE DATABASE "relational_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (49.2ms)[0m  [1m[35mCREATE DATABASE "relational_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-05-11 01:08:07.200545', '2024-05-11 01:08:07.200548') RETURNING "key"[0m
+Migrating to CreateAreas (20240506233123)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "areas" ("id" bigserial primary key, "name" character varying, "rock_type" character varying, "state" character varying, "county" character varying, "approach_distance" integer, "roadside_access" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233123') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20240506233146)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "routes" ("id" bigserial primary key, "name" character varying, "difficulty" integer, "sport" boolean, "trad" boolean, "length" integer, "pitches" integer, "rating" integer, "area_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_90e7beaea6"
+FOREIGN KEY ("area_id")
+  REFERENCES "areas" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_routes_on_area_id" ON "routes" ("area_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240506233146') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(6619517006900186970)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/routes" for ::1 at 2024-05-10 19:08:13 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.9ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 22.0ms | Allocations: 3713)
+  Rendered layout layouts/application.html.erb (Duration: 45.2ms | Allocations: 37772)
+Completed 200 OK in 65ms (Views: 42.1ms | ActiveRecord: 4.9ms | Allocations: 48757)
+
+
+Started GET "/routes" for ::1 at 2024-05-10 19:08:14 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (1.3ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 23.5ms | Allocations: 433)
+  Rendered layout layouts/application.html.erb (Duration: 25.2ms | Allocations: 1874)
+Completed 200 OK in 27ms (Views: 24.6ms | ActiveRecord: 1.3ms | Allocations: 2144)
+
+
+Started GET "/routes" for ::1 at 2024-05-10 19:08:15 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.3ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 431)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 1854)
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 0.3ms | Allocations: 2122)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (2.1ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Animal World"], ["rock_type", "Granite"], ["state", "Colorado"], ["county", "Boulder"], ["approach_distance", 30], ["roadside_access", false], ["created_at", "2024-05-11 01:08:29.306831"], ["updated_at", "2024-05-11 01:08:29.306831"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Create (0.6ms)[0m  [1m[32mINSERT INTO "areas" ("name", "rock_type", "state", "county", "approach_distance", "roadside_access", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Wall Street"], ["rock_type", "Sandstone"], ["state", "Utah"], ["county", "Grand"], ["approach_distance", 0], ["roadside_access", true], ["created_at", "2024-05-11 01:08:29.310292"], ["updated_at", "2024-05-11 01:08:29.310292"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRoute Create (2.6ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Animation"], ["difficulty", 58], ["sport", true], ["trad", false], ["length", 100], ["pitches", 1], ["rating", 3], ["area_id", 1], ["created_at", "2024-05-11 01:08:29.331647"], ["updated_at", "2024-05-11 01:08:29.331647"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArea Load (0.1ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRoute Create (0.2ms)[0m  [1m[32mINSERT INTO "routes" ("name", "difficulty", "sport", "trad", "length", "pitches", "rating", "area_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Free Willie"], ["difficulty", 511], ["sport", true], ["trad", false], ["length", 80], ["pitches", 1], ["rating", 3], ["area_id", 1], ["created_at", "2024-05-11 01:08:29.336151"], ["updated_at", "2024-05-11 01:08:29.336151"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/routes" for ::1 at 2024-05-10 19:08:39 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.9ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 21.5ms | Allocations: 19330)
+  Rendered layout layouts/application.html.erb (Duration: 49.3ms | Allocations: 53420)
+Completed 200 OK in 63ms (Views: 39.5ms | ActiveRecord: 11.3ms | Allocations: 64407)
+
+
+Started GET "/routes" for ::1 at 2024-05-10 19:15:42 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (41.1ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 45.3ms | Allocations: 3241)
+  Rendered layout layouts/application.html.erb (Duration: 51.6ms | Allocations: 4673)
+Completed 200 OK in 53ms (Views: -7.6ms | ActiveRecord: 59.8ms | Allocations: 4942)
+
+
+Started GET "/routes" for ::1 at 2024-05-10 19:19:44 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (22.3ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 27.7ms | Allocations: 487)
+  Rendered layout layouts/application.html.erb (Duration: 37.7ms | Allocations: 1906)
+Completed 200 OK in 44ms (Views: 16.9ms | ActiveRecord: 22.3ms | Allocations: 2175)
+
+
+Started GET "/routes/1" for ::1 at 2024-05-10 19:19:48 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes/1"):
+  
+Started GET "/routes/1" for ::1 at 2024-05-10 19:22:17 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes/1"):
+  
+Started GET "/routes/1" for ::1 at 2024-05-10 19:22:19 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes/1"):
+  
+Started GET "/routes" for ::1 at 2024-05-10 19:22:28 -0600
+Processing by RoutesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (13.7ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  ↳ app/views/routes/index.html.erb:2
+  Rendered routes/index.html.erb within layouts/application (Duration: 16.3ms | Allocations: 481)
+  Rendered layout layouts/application.html.erb (Duration: 23.3ms | Allocations: 1917)
+Completed 200 OK in 26ms (Views: 10.5ms | ActiveRecord: 13.7ms | Allocations: 2178)
+
+
+Started GET "/routes/1" for ::1 at 2024-05-10 19:27:45 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/routes/1"):
+  
+Started GET "/routes/1" for ::1 at 2024-05-10 19:28:56 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRoute Load (0.5ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1140)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 1232)
+Completed 500 Internal Server Error in 124ms (ActiveRecord: 9.5ms | Allocations: 12146)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `route' for #<ActionView::Base:0x00000000012430>):
+    1: <h1><%= @route.name %></h1>
+    2: <ul>
+    3:   <li>Difficulty: <%= route.difficulty %></li>
+    4:   <li>Length: <%= route.length %></li>
+    5:   <li>Pitches: <%= route.pitches %></li>
+    6:   <li>Rating: <%= route.rating %> stars</li>
+  
+app/views/routes/show.html.erb:3
+Started GET "/routes/2" for ::1 at 2024-05-10 19:29:02 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRoute Load (1.0ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 994)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1085)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.0ms | Allocations: 1757)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `route' for #<ActionView::Base:0x00000000012778>):
+    1: <h1><%= @route.name %></h1>
+    2: <ul>
+    3:   <li>Difficulty: <%= route.difficulty %></li>
+    4:   <li>Length: <%= route.length %></li>
+    5:   <li>Pitches: <%= route.pitches %></li>
+    6:   <li>Rating: <%= route.rating %> stars</li>
+  
+app/views/routes/show.html.erb:3
+Started GET "/routes/2" for ::1 at 2024-05-10 19:29:29 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRoute Load (0.2ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 230)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 15077)
+Completed 200 OK in 46ms (Views: 14.0ms | ActiveRecord: 26.5ms | Allocations: 22364)
+
+
+Started GET "/routes/1" for ::1 at 2024-05-10 19:29:33 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRoute Load (0.2ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | Allocations: 1448)
+Completed 200 OK in 13ms (Views: 2.5ms | ActiveRecord: 0.2ms | Allocations: 2131)
+
+
+Started GET "/" for ::1 at 2024-05-12 11:33:58 -0600
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/noahdurbin/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.6ms | Allocations: 274)
+Completed 200 OK in 11ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 1066)
+
+
+Started GET "/areas/1/routes" for ::1 at 2024-05-12 11:34:07 -0600
+Processing by AreaRoutesController#index as HTML
+  Parameters: {"area_id"=>"1"}
+  [1m[36mArea Load (0.9ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/area_routes_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering area_routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (1.9ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."area_id" = $1[0m  [["area_id", 1]]
+  ↳ app/views/area_routes/index.html.erb:1
+  Rendered area_routes/index.html.erb within layouts/application (Duration: 24.7ms | Allocations: 6745)
+  Rendered layout layouts/application.html.erb (Duration: 41.5ms | Allocations: 21584)
+Completed 200 OK in 168ms (Views: 41.3ms | ActiveRecord: 52.5ms | Allocations: 39515)
+
+
+Started GET "/routes/1" for ::1 at 2024-05-12 11:34:09 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRoute Load (0.7ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 223)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 1666)
+Completed 200 OK in 11ms (Views: 4.8ms | ActiveRecord: 0.7ms | Allocations: 3107)
+
+
+Started GET "/routes/2" for ::1 at 2024-05-12 11:34:11 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRoute Load (0.5ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 1479)
+Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 0.5ms | Allocations: 2162)
+
+
+Started GET "/routes/2" for ::1 at 2024-05-12 11:34:14 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRoute Load (0.4ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 1431)
+Completed 200 OK in 9ms (Views: 3.8ms | ActiveRecord: 0.4ms | Allocations: 2114)
+
+
+Started GET "/areas/1/routes" for ::1 at 2024-05-12 11:35:47 -0600
+Processing by AreaRoutesController#index as HTML
+  Parameters: {"area_id"=>"1"}
+  [1m[36mArea Load (2.0ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/area_routes_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering area_routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.9ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."area_id" = $1[0m  [["area_id", 1]]
+  ↳ app/views/area_routes/index.html.erb:1
+  Rendered area_routes/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 6538)
+  Rendered layout layouts/application.html.erb (Duration: 26.7ms | Allocations: 21431)
+Completed 200 OK in 81ms (Views: 26.1ms | ActiveRecord: 47.3ms | Allocations: 29141)
+
+
+Started GET "/routes/2" for ::1 at 2024-05-12 11:35:48 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRoute Load (0.3ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.5ms | Allocations: 215)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 1652)
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 0.2ms | Allocations: 3090)
+
+
+Started GET "/routes/1" for ::1 at 2024-05-12 11:35:49 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRoute Load (0.5ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 1443)
+Completed 200 OK in 9ms (Views: 5.1ms | ActiveRecord: 0.5ms | Allocations: 2127)
+
+
+Started GET "/routes/2" for ::1 at 2024-05-12 11:35:51 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRoute Load (1.0ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 1443)
+Completed 200 OK in 10ms (Views: 5.7ms | ActiveRecord: 1.0ms | Allocations: 2126)
+
+
+Started GET "/areas/1/routes" for ::1 at 2024-05-12 11:36:16 -0600
+Processing by AreaRoutesController#index as HTML
+  Parameters: {"area_id"=>"1"}
+  [1m[36mArea Load (7.0ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/area_routes_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering area_routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.5ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."area_id" = $1[0m  [["area_id", 1]]
+  ↳ app/views/area_routes/index.html.erb:1
+  Rendered area_routes/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 631)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | Allocations: 2051)
+Completed 200 OK in 27ms (Views: 10.4ms | ActiveRecord: 7.4ms | Allocations: 2763)
+
+
+Started GET "/areas/2/routes" for ::1 at 2024-05-12 11:36:20 -0600
+Processing by AreaRoutesController#index as HTML
+  Parameters: {"area_id"=>"2"}
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/area_routes_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering area_routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.2ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."area_id" = $1[0m  [["area_id", 2]]
+  ↳ app/views/area_routes/index.html.erb:1
+  Rendered area_routes/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 553)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 1971)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.4ms | Allocations: 2681)
+
+
+Started GET "/areas" for ::1 at 2024-05-12 11:36:28 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (4.9ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  ↳ app/views/areas/index.html.erb:2
+  Rendered areas/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 624)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 2071)
+Completed 200 OK in 11ms (Views: 4.7ms | ActiveRecord: 4.9ms | Allocations: 2541)
+
+
+Started GET "/areas" for ::1 at 2024-05-12 11:38:38 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (14.5ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  ↳ app/views/areas/index.html.erb:2
+  Rendered areas/index.html.erb within layouts/application (Duration: 32.9ms | Allocations: 4424)
+  Rendered layout layouts/application.html.erb (Duration: 42.7ms | Allocations: 19265)
+Completed 200 OK in 46ms (Views: 14.8ms | ActiveRecord: 28.9ms | Allocations: 21123)
+
+
+Started GET "/areas/1/routes" for ::1 at 2024-05-12 11:38:46 -0600
+Processing by AreaRoutesController#index as HTML
+  Parameters: {"area_id"=>"1"}
+  [1m[36mArea Load (0.3ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/area_routes_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering area_routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.5ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."area_id" = $1[0m  [["area_id", 1]]
+  ↳ app/views/area_routes/index.html.erb:3
+  Rendered area_routes/index.html.erb within layouts/application (Duration: 9.7ms | Allocations: 6548)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | Allocations: 7998)
+Completed 200 OK in 20ms (Views: 11.1ms | ActiveRecord: 3.2ms | Allocations: 10579)
+
+
+Started GET "/areas/1/routes" for ::1 at 2024-05-12 11:38:48 -0600
+Processing by AreaRoutesController#index as HTML
+  Parameters: {"area_id"=>"1"}
+  [1m[36mArea Load (0.5ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/area_routes_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering area_routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.4ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."area_id" = $1[0m  [["area_id", 1]]
+  ↳ app/views/area_routes/index.html.erb:3
+  Rendered area_routes/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 632)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2049)
+Completed 200 OK in 11ms (Views: 6.8ms | ActiveRecord: 0.8ms | Allocations: 2761)
+
+
+Started GET "/areas/1/routes" for ::1 at 2024-05-12 11:40:27 -0600
+Processing by AreaRoutesController#index as HTML
+  Parameters: {"area_id"=>"1"}
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/area_routes_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering area_routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.2ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."area_id" = $1[0m  [["area_id", 1]]
+  ↳ app/views/area_routes/index.html.erb:1
+  Rendered area_routes/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 6537)
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | Allocations: 21302)
+Completed 200 OK in 38ms (Views: 18.3ms | ActiveRecord: 12.2ms | Allocations: 28990)
+
+
+Started GET "/areas/1/routes" for ::1 at 2024-05-12 11:40:27 -0600
+Processing by AreaRoutesController#index as HTML
+  Parameters: {"area_id"=>"1"}
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/area_routes_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering area_routes/index.html.erb within layouts/application
+  [1m[36mRoute Load (0.2ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."area_id" = $1[0m  [["area_id", 1]]
+  ↳ app/views/area_routes/index.html.erb:1
+  Rendered area_routes/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 631)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 2075)
+Completed 200 OK in 9ms (Views: 6.6ms | ActiveRecord: 0.4ms | Allocations: 2787)
+
+
+Started GET "/routes/2" for ::1 at 2024-05-12 11:40:29 -0600
+Processing by RoutesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRoute Load (0.2ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/routes_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering routes/show.html.erb within layouts/application
+  Rendered routes/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 215)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 1652)
+Completed 200 OK in 7ms (Views: 3.8ms | ActiveRecord: 0.2ms | Allocations: 3091)
+
+
+Started GET "/areas" for ::1 at 2024-05-12 12:01:26 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (48.1ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  ↳ app/views/areas/index.html.erb:2
+  Rendered areas/index.html.erb within layouts/application (Duration: 52.7ms | Allocations: 3394)
+  Rendered layout layouts/application.html.erb (Duration: 60.7ms | Allocations: 4838)
+Completed 200 OK in 63ms (Views: -4.4ms | ActiveRecord: 66.2ms | Allocations: 5308)
+
+
+Started GET "/areas" for ::1 at 2024-05-12 12:02:01 -0600
+Processing by AreasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering areas/index.html.erb within layouts/application
+  [1m[36mArea Load (15.3ms)[0m  [1m[34mSELECT "areas".* FROM "areas"[0m
+  ↳ app/views/areas/index.html.erb:2
+  Rendered areas/index.html.erb within layouts/application (Duration: 17.8ms | Allocations: 462)
+  Rendered layout layouts/application.html.erb (Duration: 22.3ms | Allocations: 1875)
+Completed 200 OK in 26ms (Views: 9.1ms | ActiveRecord: 15.2ms | Allocations: 2135)
+
+
+Started GET "/areas/1" for ::1 at 2024-05-12 14:58:25 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (0.9ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+Completed 404 Not Found in 33ms (ActiveRecord: 19.1ms | Allocations: 5437)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Area with 'id'=1):
+  
+app/controllers/areas_controller.rb:7:in `show'
+Started GET "/areas/1" for ::1 at 2024-05-12 14:59:06 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (0.6ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 299)
+  Rendered layout layouts/application.html.erb (Duration: 21.4ms | Allocations: 15163)
+Completed 200 OK in 35ms (Views: 23.9ms | ActiveRecord: 0.6ms | Allocations: 19614)
+
+
+Started GET "/areas/1" for ::1 at 2024-05-12 14:59:42 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (0.9ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.5ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 1469)
+Completed 200 OK in 17ms (Views: 11.3ms | ActiveRecord: 0.9ms | Allocations: 2151)
+
+
+Started GET "/areas/1" for ::1 at 2024-05-12 15:00:17 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (0.1ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1357)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1449)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 13.8ms | Allocations: 9285)
+
+
+  
+ActionView::Template::Error (undefined method `routes_count' for #<Area id: 1, name: "Animal World", rock_type: "Granite", state: "Colorado", county: "Boulder", approach_distance: 30, roadside_access: false, created_at: "2024-05-12 20:59:01.320745000 +0000", updated_at: "2024-05-12 20:59:01.320745000 +0000", route_count: 0>):
+    5:   <li>County: <%= @area.county %></li>
+    6:   <li>Approach Distance: <%= @area.approach_distance %> minutes</li>
+    7:   <li>Roadside Access: <%= @area.roadside_access %> </li>
+    8:   <li>Number of Routes: <%= @area.routes_count %> </li>
+    9: </ul>
+  
+app/views/areas/show.html.erb:8
+Started GET "/areas/1" for ::1 at 2024-05-12 15:00:31 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (0.2ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1245)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1337)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 20.5ms | Allocations: 8268)
+
+
+  
+ActionView::Template::Error (undefined method `routee_count' for #<Area id: 1, name: "Animal World", rock_type: "Granite", state: "Colorado", county: "Boulder", approach_distance: 30, roadside_access: false, created_at: "2024-05-12 20:59:01.320745000 +0000", updated_at: "2024-05-12 20:59:01.320745000 +0000", route_count: 0>):
+    5:   <li>County: <%= @area.county %></li>
+    6:   <li>Approach Distance: <%= @area.approach_distance %> minutes</li>
+    7:   <li>Roadside Access: <%= @area.roadside_access %> </li>
+    8:   <li>Number of Routes: <%= @area.routee_count %> </li>
+    9: </ul>
+  
+app/views/areas/show.html.erb:8
+Started GET "/areas/1" for ::1 at 2024-05-12 15:00:35 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (0.3ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 1077)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1168)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms | Allocations: 1830)
+
+
+  
+ActionView::Template::Error (undefined method `routee_count' for #<Area id: 1, name: "Animal World", rock_type: "Granite", state: "Colorado", county: "Boulder", approach_distance: 30, roadside_access: false, created_at: "2024-05-12 20:59:01.320745000 +0000", updated_at: "2024-05-12 20:59:01.320745000 +0000", route_count: 0>):
+    5:   <li>County: <%= @area.county %></li>
+    6:   <li>Approach Distance: <%= @area.approach_distance %> minutes</li>
+    7:   <li>Roadside Access: <%= @area.roadside_access %> </li>
+    8:   <li>Number of Routes: <%= @area.routee_count %> </li>
+    9: </ul>
+  
+app/views/areas/show.html.erb:8
+Started GET "/areas/1" for ::1 at 2024-05-12 15:00:45 -0600
+Processing by AreasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArea Load (0.1ms)[0m  [1m[34mSELECT "areas".* FROM "areas" WHERE "areas"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/areas_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering areas/show.html.erb within layouts/application
+  Rendered areas/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 232)
+  Rendered layout layouts/application.html.erb (Duration: 13.8ms | Allocations: 15145)
+Completed 200 OK in 26ms (Views: 14.8ms | ActiveRecord: 6.2ms | Allocations: 22099)
+
+
