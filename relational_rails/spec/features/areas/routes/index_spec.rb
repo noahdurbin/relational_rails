@@ -8,7 +8,7 @@ RSpec.describe 'Area Routes index' do
     @free_willie = Route.create!(name: "Free Willie", difficulty: 511, sport: true, trad: false, length: 80, pitches: 1, rating: 3, area_id: @area1.id)
   end
 
-  it 'shows all of the titles of the songs for the artist' do
+  it 'shows all of the names of the routes for the area' do
     visit "/areas/#{@area1.id}/routes"
 
     expect(page).to have_content(@animation.name)
