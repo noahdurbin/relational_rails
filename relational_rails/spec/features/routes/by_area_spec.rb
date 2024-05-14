@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Area Routes index' do
+RSpec.describe 'Routes index' do
   before :each do
     @area1 = Area.create(name: "Animal World", rock_type: "Granite", state: "Colorado", county: "Boulder", approach_distance: 30, roadside_access: false)
     @area2 = Area.create(name: "Wall Street", rock_type: "Sandstone", state: "Utah", county: "Grand", approach_distance: 0, roadside_access: true)
