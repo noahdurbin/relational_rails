@@ -9,3 +9,4 @@
     <li>Trad: <%= route.trad %> </li>
   </ul>
 <% end %>
+<%= button_to "Create Route", "/#{@area.id}/routes/new", method: :get %>

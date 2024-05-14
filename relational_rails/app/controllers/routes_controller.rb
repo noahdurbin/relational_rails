@@ -11,4 +11,11 @@ class RoutesController < ApplicationController
       @area = Area.find(params[:area_id])
       @routes = @area.routes
   end
+
+  def new
+  end
+
+  # def routes_params
+  #   params.permit(:name, :difficulty, :sport, :trad, :length, :pitches, :rating)
+  # end
 end
